@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import SearchForm from 'components/SearchForm/SearchForm';
 import { searchMovies } from 'services/api';
 
@@ -7,6 +7,7 @@ const Movies = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [foundMovies, setFoundMovies] = useState([]);
   const [error, setError] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     if (!searchQuery) {
@@ -32,6 +33,7 @@ const Movies = () => {
     if (searchQuery !== query) {
       setSearchQuery(query);
       setError(null);
+      setSearchParams({ query });
     }
   };
 
@@ -42,7 +44,7 @@ const Movies = () => {
       <ul>
         {foundMovies.map(({ id, original_title }) => (
           <li key={id}>
-            <NavLink to={`movies/${id}`}>{original_title}</NavLink>
+            <Link to={`${id}`}>{original_title}</Link>
           </li>
         ))}
       </ul>
