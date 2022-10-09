@@ -1,5 +1,3 @@
-import { fetchTrending } from 'services/api';
-
 export const App = () => {
   return (
     <div
