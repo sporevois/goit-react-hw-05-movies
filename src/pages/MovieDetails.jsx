@@ -9,11 +9,10 @@ const MovieDetails = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const getDetails = async index => {
+    const getDetails = async id => {
       try {
-        const data = await fetchDetails(index);
-        setDetails(data);
-        console.log(data);
+        const movieInfo = await fetchDetails(id);
+        setDetails(movieInfo);
       } catch (error) {
         setError(error.message);
       } finally {

@@ -8,7 +8,10 @@ export const fetchTrending = async () => {
     `trending/movie/day?api_key=${KEY}&language=en-US`
   );
   const data = response.data.results;
-  return data;
+  const mapedData = data.map(({ id, original_title }) => {
+    return { id, original_title };
+  });
+  return mapedData;
 };
 
 export const searchMovies = async query => {
@@ -16,7 +19,10 @@ export const searchMovies = async query => {
     `search/movie?api_key=${KEY}&query=${query}&language=en-US`
   );
   const data = response.data.results;
-  return data;
+  const mapedData = data.map(({ id, original_title }) => {
+    return { id, original_title };
+  });
+  return mapedData;
 };
 
 export const fetchDetails = async id => {
@@ -28,7 +34,17 @@ export const fetchDetails = async id => {
 export const fetchCredits = async id => {
   const response = await axios.get(`movie/${id}/credits?api_key=${KEY}`);
   const data = response.data;
-  return data;
+  const mapedData = data.cast.map(
+    ({ id, original_name, character, profile_path }) => {
+      return {
+        id,
+        original_name,
+        character,
+        profile_path,
+      };
+    }
+  );
+  return mapedData;
 };
 
 export const fetchReviews = async id => {

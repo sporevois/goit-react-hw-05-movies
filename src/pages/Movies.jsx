@@ -16,10 +16,7 @@ const Movies = () => {
 
     const getMoviesByQuery = async () => {
       try {
-        const movies = await searchMovies(searchQuery);
-        const searchResults = movies.map(({ id, original_title }) => {
-          return { id, original_title };
-        });
+        const searchResults = await searchMovies(searchQuery);
         setFoundMovies([...searchResults]);
       } catch (error) {
         setError(error.message);

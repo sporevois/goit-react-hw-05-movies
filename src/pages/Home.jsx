@@ -9,10 +9,7 @@ const Home = () => {
   useEffect(() => {
     const getTrending = async () => {
       try {
-        const movies = await fetchTrending();
-        const trendingMovies = movies.map(({ id, original_title }) => {
-          return { id, original_title };
-        });
+        const trendingMovies = await fetchTrending();
         setTrending([...trendingMovies]);
       } catch (error) {
         setError(error.message);
