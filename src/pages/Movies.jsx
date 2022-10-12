@@ -1,18 +1,19 @@
 import { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import SearchForm from 'components/SearchForm/SearchForm';
+import SearchBox from 'components/SearchBox/SearchBox';
 import { searchMovies } from 'services/api';
 
 const Movies = () => {
-  const [searchQuery, setSearchQuery] = useState('');
   const [foundMovies, setFoundMovies] = useState([]);
   const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
+  const searchQuery = searchParams.get('query') ?? '';
 
   useEffect(() => {
     if (!searchQuery) {
       return;
     }
+
     const getMoviesByQuery = async () => {
       try {
         const movies = await searchMovies(searchQuery);
@@ -27,19 +28,18 @@ const Movies = () => {
       }
     };
     getMoviesByQuery();
-  }, [searchQuery]);
+  }, [searchQuery, searchParams]);
 
   const handleSubmit = query => {
     if (searchQuery !== query) {
-      setSearchQuery(query);
       setError(null);
-      setSearchParams({ query });
+      setSearchParams(query !== '' ? { query } : {});
     }
   };
 
   return (
     <>
-      <SearchForm onSubmit={handleSubmit} />
+      <SearchBox value={searchQuery} onSubmit={handleSubmit} />
       {error && <h3 style={{ marginLeft: '15px' }}>{error}</h3>}
       <ul>
         {foundMovies.map(({ id, original_title }) => (

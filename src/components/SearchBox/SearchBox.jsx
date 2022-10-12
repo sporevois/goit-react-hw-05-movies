@@ -1,6 +1,7 @@
 import { useState } from 'react';
-const SearchForm = ({ onSubmit }) => {
-  const [query, setQuery] = useState('');
+
+const SearchBox = ({ value, onSubmit }) => {
+  const [query, setQuery] = useState(value);
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -28,4 +29,4 @@ const SearchForm = ({ onSubmit }) => {
     </form>
   );
 };
-export default SearchForm;
+export default SearchBox;
