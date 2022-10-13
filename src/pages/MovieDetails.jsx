@@ -1,12 +1,15 @@
 import { Link, Outlet } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { fetchDetails } from 'services/api';
+import BackLink from 'components/BackLink/BackLinK';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [details, setDetails] = useState({});
   const [error, setError] = useState(null);
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/';
 
   useEffect(() => {
     const getDetails = async id => {
@@ -33,6 +36,7 @@ const MovieDetails = () => {
 
   return (
     <>
+      <BackLink to={backLinkHref}>Go back</BackLink>
       {error && <h3 style={{ marginLeft: '15px' }}>{error}</h3>}
       <img
         src={`https://image.tmdb.org/t/p/w300/${poster_path}`}
@@ -50,10 +54,14 @@ const MovieDetails = () => {
       <p>Additional information</p>
       <ul>
         <li>
-          <Link to={'cast'}>Cast</Link>
+          <Link to={'cast'} state={{ from: location.state.from }}>
+            Cast
+          </Link>
         </li>
         <li>
-          <Link to={'reviews'}>Reviews</Link>
+          <Link to={'reviews'} state={{ from: location.state.from }}>
+            Reviews
+          </Link>
         </li>
       </ul>
       <Outlet />

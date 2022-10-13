@@ -50,5 +50,12 @@ export const fetchCredits = async id => {
 export const fetchReviews = async id => {
   const response = await axios.get(`movie/${id}/reviews?api_key=${KEY}`);
   const data = response.data;
-  return data;
+  const mapedData = data.results.map(({ id, author, content }) => {
+    return {
+      id,
+      author,
+      content,
+    };
+  });
+  return mapedData;
 };
