@@ -1,0 +1,21 @@
+header{
+    margin-bottom: 20px;
+     border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.navigation{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    
+}
+
+.navItem{
+    margin-left: 10px;
+    text-decoration: none;
+    
+}
+.activeLink {
+    color: red;
+}
