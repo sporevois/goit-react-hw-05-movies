@@ -40,9 +40,6 @@ const MovieDetails = () => {
     <>
       <Container>
         <GoBackLink to={backLinkHref}>Go back</GoBackLink>
-      </Container>
-
-      <Container>
         {error && <h3>{error}</h3>}
         <Box>
           <img

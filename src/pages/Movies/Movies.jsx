@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useSearchParams, useLocation } from 'react-router-dom';
 import SearchBox from 'components/SearchBox/SearchBox';
 import { searchMovies } from 'services/api';
-import { Container, List } from 'utils/Container.styled';
+import { Container} from 'utils/Container.styled';
 import { ListItem } from 'pages/Home/Home.styled';
 
 const Movies = () => {
@@ -41,7 +41,7 @@ const Movies = () => {
     <Container>
       <SearchBox value={searchQuery} onSubmit={handleSubmit} />
       {error && <h3 style={{ marginLeft: '15px' }}>{error}</h3>}
-      <List>
+      <ul>
         {foundMovies.map(({ id, original_title }) => (
           <ListItem key={id}>
             <Link to={`${id}`} state={{ from: location }}>
@@ -49,7 +49,7 @@ const Movies = () => {
             </Link>
           </ListItem>
         ))}
-      </List>
+      </ul>
     </Container>
   );
 };
