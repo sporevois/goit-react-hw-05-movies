@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { fetchTrending } from 'services/api';
-import { Container, List } from 'utils/Utils.styled';
+import { Container } from 'utils/Container.styled';
 import { ListItem } from './Home.styled';
 
 const Home = () => {
@@ -27,7 +27,7 @@ const Home = () => {
     <Container>
       <h1>Trending today</h1>
       {error && <h3>{error}</h3>}
-      <List>
+      <ul>
         {trending.map(({ id, original_title }) => (
           <ListItem key={id}>
             <Link to={`movies/${id}`} state={{ from: location }}>
@@ -35,7 +35,7 @@ const Home = () => {
             </Link>
           </ListItem>
         ))}
-      </List>
+      </ul>
     </Container>
   );
 };

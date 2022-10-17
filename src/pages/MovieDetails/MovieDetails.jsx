@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { fetchDetails } from 'services/api';
 import GoBackLink from 'components/BackLink/BackLink';
-import { Container } from 'utils/Utils.styled';
+import { Container } from 'utils/Container.styled';
 import { Box, Wrapper, StyledLink, NavList } from './MovieDetails.styled';
 
 const MovieDetails = () => {
@@ -61,21 +61,22 @@ const MovieDetails = () => {
             <p>{genres && genres.map(genre => genre.name).join(' ')}</p>
           </Wrapper>
         </Box>
+
         <p>Additional information</p>
+        <NavList>
+          <li>
+            <StyledLink to={'cast'} state={{ from: location.state.from }}>
+              Cast
+            </StyledLink>
+          </li>
+          <li>
+            <StyledLink to={'reviews'} state={{ from: location.state.from }}>
+              Reviews
+            </StyledLink>
+          </li>
+        </NavList>
+        <Outlet />
       </Container>
-      <NavList>
-        <li>
-          <StyledLink to={'cast'} state={{ from: location.state.from }}>
-            Cast
-          </StyledLink>
-        </li>
-        <li>
-          <StyledLink to={'reviews'} state={{ from: location.state.from }}>
-            Reviews
-          </StyledLink>
-        </li>
-      </NavList>
-      <Outlet />
     </>
   );
 };

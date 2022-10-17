@@ -35,7 +35,7 @@ const Cast = () => {
                   : defaultAvatar
               }
               alt={`${original_name} avatar`}
-              width="180"
+              width="140"
             />
             <p>{original_name}</p>
             <p>Character: {character}</p>

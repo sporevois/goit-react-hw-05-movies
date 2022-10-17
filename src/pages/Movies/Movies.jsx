@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useSearchParams, useLocation } from 'react-router-dom';
 import SearchBox from 'components/SearchBox/SearchBox';
 import { searchMovies } from 'services/api';
-import { Container, List } from 'utils/Utils.styled';
+import { Container, List } from 'utils/Container.styled';
 import { ListItem } from 'pages/Home/Home.styled';
 
 const Movies = () => {
