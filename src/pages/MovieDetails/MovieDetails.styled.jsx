@@ -20,11 +20,19 @@ export const StyledLink = styled(NavLink)`
   line-height: 1.12;
   font-weight: 500;
   border: 1px solid black;
+  border-radius: 2px;
   text-decoration: none;
 
-  &.active {
+  &:hover {
     color: red;
     border-color: red;
+    transition: 250px;
+  }
+
+  &.active {
+    color: white;
+    border-color: red;
+    background-color: crimson;
   }
 `;
 
