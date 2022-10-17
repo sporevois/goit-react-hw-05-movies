@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { Link, useSearchParams, useLocation } from 'react-router-dom';
 import SearchBox from 'components/SearchBox/SearchBox';
 import { searchMovies } from 'services/api';
+import { Container, List } from 'utils/Utils.styled';
+import { ListItem } from 'pages/Home/Home.styled';
 
 const Movies = () => {
   const [foundMovies, setFoundMovies] = useState([]);
@@ -36,19 +38,19 @@ const Movies = () => {
   };
 
   return (
-    <>
+    <Container>
       <SearchBox value={searchQuery} onSubmit={handleSubmit} />
       {error && <h3 style={{ marginLeft: '15px' }}>{error}</h3>}
-      <ul>
+      <List>
         {foundMovies.map(({ id, original_title }) => (
-          <li key={id}>
+          <ListItem key={id}>
             <Link to={`${id}`} state={{ from: location }}>
               {original_title}
             </Link>
-          </li>
+          </ListItem>
         ))}
-      </ul>
-    </>
+      </List>
+    </Container>
   );
 };
 export default Movies;

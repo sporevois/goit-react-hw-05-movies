@@ -1,19 +1,19 @@
 import { BiArrowBack } from 'react-icons/bi';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { BackLink } from './BackLink.styled';
 
-const BackLink = ({ to, children }) => {
+const GoBackLink = ({ to, children }) => {
   return (
-    <Link to={to}>
+    <BackLink to={to}>
       <BiArrowBack size="20" />
       {children}
-    </Link>
+    </BackLink>
   );
 };
 
-export default BackLink;
+export default GoBackLink;
 
-BackLink.propTypes = {
+GoBackLink.propTypes = {
   to: PropTypes.object.isRequired,
   children: PropTypes.string.isRequired,
 };

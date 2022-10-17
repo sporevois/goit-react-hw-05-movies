@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { fetchTrending } from 'services/api';
+import { Container, List } from 'utils/Utils.styled';
+import { ListItem } from './Home.styled';
 
 const Home = () => {
   const [trending, setTrending] = useState([]);
@@ -22,19 +24,19 @@ const Home = () => {
   }, []);
 
   return (
-    <>
+    <Container>
       <h1>Trending today</h1>
-      {error && <h3 style={{ marginLeft: '15px' }}>{error}</h3>}
-      <ul>
+      {error && <h3>{error}</h3>}
+      <List>
         {trending.map(({ id, original_title }) => (
-          <li key={id}>
-            <NavLink to={`movies/${id}`} state={{ from: location }}>
+          <ListItem key={id}>
+            <Link to={`movies/${id}`} state={{ from: location }}>
               {original_title}
-            </NavLink>
-          </li>
+            </Link>
+          </ListItem>
         ))}
-      </ul>
-    </>
+      </List>
+    </Container>
   );
 };
 

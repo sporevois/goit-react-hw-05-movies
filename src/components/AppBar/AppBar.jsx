@@ -1,26 +1,14 @@
-import { NavLink } from 'react-router-dom';
-import styles from '../AppBar/AppBar.module.css';
+import { StyledLink, Header, Nav } from './AppBar.styled';
 const AppBar = () => {
   return (
-    <header>
-      <nav className={styles.navigation}>
-        <NavLink
-          className={styles.navItem}
-          activeClassName={styles.activeLink}
-          to="/"
-          end
-        >
+    <Header>
+      <Nav>
+        <StyledLink to="/" end>
           Home
-        </NavLink>
-        <NavLink
-          className={styles.navItem}
-          activeClassName={styles.activeLink}
-          to="movies"
-        >
-          Movies
-        </NavLink>
-      </nav>
-    </header>
+        </StyledLink>
+        <StyledLink to="movies">Movies</StyledLink>
+      </Nav>
+    </Header>
   );
 };
 export default AppBar;

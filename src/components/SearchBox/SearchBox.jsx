@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Form } from './SearchBox.styled';
 
 const SearchBox = ({ value, onSubmit }) => {
   const [query, setQuery] = useState(value);
@@ -16,7 +17,7 @@ const SearchBox = ({ value, onSubmit }) => {
     setQuery(event.target.value.toLowerCase());
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <input
         type="text"
         autoComplete="off"
@@ -27,7 +28,7 @@ const SearchBox = ({ value, onSubmit }) => {
         onInput={handleInput}
       />
       <button type="submit">Search</button>
-    </form>
+    </Form>
   );
 };
 export default SearchBox;
