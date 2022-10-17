@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useSearchParams, useLocation } from 'react-router-dom';
 import SearchBox from 'components/SearchBox/SearchBox';
 import { searchMovies } from 'services/api';
-import { Container} from 'utils/Container.styled';
+import { Container } from 'utils/Container.styled';
 import { ListItem } from 'pages/Home/Home.styled';
 
 const Movies = () => {
@@ -20,6 +20,11 @@ const Movies = () => {
     const getMoviesByQuery = async () => {
       try {
         const searchResults = await searchMovies(searchQuery);
+        if (searchResults.length === 0) {
+          throw new Error(
+            `${searchQuery} not found. Please, enter another request`
+          );
+        }
         setFoundMovies([...searchResults]);
       } catch (error) {
         setError(error.message);
