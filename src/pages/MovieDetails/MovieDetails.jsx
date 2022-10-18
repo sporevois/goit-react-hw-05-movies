@@ -1,10 +1,11 @@
 import { Outlet } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { fetchDetails } from 'services/api';
 import GoBackLink from 'components/GoBackLink/GoBackLink';
 import { Container } from 'utils/Container.styled';
 import { Box, Wrapper, StyledLink, NavList } from './MovieDetails.styled';
+import Loader from 'components/Loader/Loader';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -72,7 +73,10 @@ const MovieDetails = () => {
             </StyledLink>
           </li>
         </NavList>
-        <Outlet />
+
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
       </Container>
     </>
   );
